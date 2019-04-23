@@ -1,0 +1,27 @@
+#!/bin/bash
+
+set -e
+
+if [ ! -z $SSL_CERTFILE ]; then
+    JUPYTER_FLAGS="$JUPYTER_FLAGS --certfile=$SSL_CERTFILE"
+fi
+
+if [ ! -z $SSL_KEYFILE ]; then
+    JUPYTER_FLAGS="$JUPYTER_FLAGS --keyfile=$SSL_KEYFILE"
+fi
+
+if [ ! -z $NOTEBOOK_DIR ]; then
+    JUPYTER_FLAGS="$JUPYTER_FLAGS --notebook-dir=$NOTEBOOK_DIR"
+else
+    mkdir -p $HOME/notebooks
+    JUPYTER_FLAGS="$JUPYTER_FLAGS --notebook-dir=$HOME/notebooks"
+fi
+
+if [ ! -d "$HOME/.jupyter" ]; then
+    echo "-- generating config"
+    jupyter notebook --generate-config
+fi
+
+echo "-- running jupiter notebook with options $JUPYTER_FLAGS"
+exec jupyter notebook --ip=0.0.0.0 --no-browser $JUPYTER_FLAGS
+
