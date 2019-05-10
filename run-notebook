@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+function help() {
+    echo "Usage: $0 <notebook-path> [port]"
+    echo ""
+    echo "notebook-path  path to notebook files"
+    echo "port           jupyter server port"
+    exit 1
+}
+
+[[ $# -lt 1 ]] && help
+
+notebooks=$1
+port=${2:-"127.0.0.1:8888"}
+
+docker run --rm -it \
+    -v $notebooks:/home/jupyter/notebooks \
+    -p $port:8888 \
+    jupyter-notebook
+
+
+
