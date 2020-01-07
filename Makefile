@@ -11,6 +11,9 @@ VERSION:=1.0
 BUILDID=$(shell date +"%Y%m%d%H%M")
 COMMITID=$(shell git rev-parse --short HEAD)
 
+JUPYTER_GID:=7000
+BUILD_ARGS += --build-arg JUPYTER_GID=$(JUPYTER_GID)
+
 ifdef REGISTRY_URL
 REGISTRY_PREFIX=$(REGISTRY_URL)/
 BUILD_ARGS += --build-arg REGISTRY_PREFIX=$(REGISTRY_PREFIX)
