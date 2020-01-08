@@ -17,10 +17,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends gosu git make \
       libproj13 \
       gdal-bin \
       python3-gdal \        
-      python3-numpy \
-      python3-shapely \
       python3-psycopg2 \
-      python3-pyproj \
       python3-owslib \
       python3-cffi \
       python3-netcdf4 \
@@ -36,6 +33,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends python3-setupto
     && apt-get clean  && rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install -U \
+    numpy \
+    shapely \
+    pyproj \
     matplotlib \
     Jinja2 \
     simplejson \
@@ -47,7 +47,6 @@ RUN pip3 install -U \
     Jinja2 \
     jupyter \
     jupyter-js-widgets-nbextension \
-    nbformat \
     pyDatalog \
     folium \
     fiona \
@@ -57,6 +56,7 @@ RUN pip3 install -U \
     ipyleaflet \
     sympy \
     rasterio \
+    pymunk \
     && rm -rf /root/.cache /root/.ccache
 
 COPY scripts/* /usr/local/bin/
