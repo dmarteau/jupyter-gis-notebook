@@ -1,6 +1,6 @@
 ARG REGISTRY_PREFIX=''
 
-FROM  ${REGISTRY_PREFIX}debian:buster
+FROM  ${REGISTRY_PREFIX}debian:buster-slim
 MAINTAINER David Marteau <david.marteau@3liz.com>
 LABEL Description="Jupyter notebook"
 
