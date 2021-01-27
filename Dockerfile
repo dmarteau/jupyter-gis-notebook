@@ -1,31 +1,32 @@
 ARG REGISTRY_PREFIX=''
 
-FROM  ${REGISTRY_PREFIX}debian:buster-slim
+FROM  ${REGISTRY_PREFIX}ubuntu:20.04
 MAINTAINER David Marteau <david.marteau@3liz.com>
 LABEL Description="Jupyter notebook"
 
-RUN apt-get update && apt-get install -y --no-install-recommends gosu git make \
+RUN apt-get update -y && apt-get upgrade -y \
+      && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+      gosu git make \
       libc6 \
       libstdc++6 \
-      libzip4 \
-      libspatialindex5 \
+      libzip5 \
+      libspatialindex6 \
       libspatialite7 \
       libsqlite3-0 \
       libexpat1 \
-      libgdal20 \
-      libgeos-c1v5 \
-      libproj13 \
-      gdal-bin \
       python3-gdal \        
       python3-psycopg2 \
       python3-owslib \
       python3-cffi \
       python3-netcdf4 \
+      gdal-bin \
       ffmpeg \
     && apt-get clean  && rm -rf /var/lib/apt/lists/* \
     && rm -rf /usr/share/man
 
-RUN apt-get update && apt-get install -y --no-install-recommends python3-setuptools \
+RUN apt-get update -y \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        python3-setuptools \
     && python3 -m easy_install pip \
     && apt-get remove -y python3-setuptools \
     && pip3 install setuptools wheel \
