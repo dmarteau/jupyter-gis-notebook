@@ -2,7 +2,7 @@ ARG REGISTRY_PREFIX=''
 
 FROM  ${REGISTRY_PREFIX}ubuntu:20.04
 MAINTAINER David Marteau <david.marteau@3liz.com>
-LABEL Description="Jupyter notebook"
+LABEL Description="Jupyter notebook" Version="21.06.0"
 
 RUN apt-get update -y && apt-get upgrade -y \
       && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
@@ -58,6 +58,8 @@ RUN pip3 install -U \
     sympy \
     rasterio \
     pymunk \
+    OWSLib \
+    rdflib \
     && rm -rf /root/.cache /root/.ccache
 
 COPY scripts/* /usr/local/bin/
