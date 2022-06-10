@@ -1,6 +1,6 @@
 ARG REGISTRY_PREFIX=''
 
-FROM  ${REGISTRY_PREFIX}ubuntu:20.04
+FROM  ${REGISTRY_PREFIX}ubuntu:21.04
 MAINTAINER David Marteau <david.marteau@3liz.com>
 LABEL Description="Jupyter notebook" Version="21.06.0"
 
@@ -9,7 +9,7 @@ RUN apt-get update -y && apt-get upgrade -y \
       gosu git make \
       libc6 \
       libstdc++6 \
-      libzip5 \
+      libzip4 \
       libspatialindex6 \
       libspatialite7 \
       libsqlite3-0 \
@@ -27,9 +27,8 @@ RUN apt-get update -y && apt-get upgrade -y \
 RUN apt-get update -y \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         python3-setuptools \
-    && python3 -m easy_install pip \
-    && apt-get remove -y python3-setuptools \
-    && pip3 install setuptools wheel \
+        python3-pip \
+        python3-wheel \
     && rm -rf /root/.cache \
     && apt-get clean  && rm -rf /var/lib/apt/lists/*
 
