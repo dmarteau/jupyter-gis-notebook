@@ -47,7 +47,6 @@ RUN pip3 install -U \
     Jinja2 \
     jupyter \
     jupyter-js-widgets-nbextension \
-    pyDatalog \
     folium \
     fiona \
     Seaborn \
