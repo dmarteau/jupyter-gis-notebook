@@ -1,6 +1,6 @@
 ARG REGISTRY_PREFIX=''
 
-FROM  ${REGISTRY_PREFIX}ubuntu:21.04
+FROM  ${REGISTRY_PREFIX}ubuntu:22.04
 MAINTAINER David Marteau <david.marteau@3liz.com>
 LABEL Description="Jupyter notebook" Version="21.06.0"
 
